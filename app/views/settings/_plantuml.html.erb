@@ -1,0 +1,12 @@
+<fieldset>
+  <legend><%= l(:plugin_settings) %></legend>
+  <p>
+    <label><%= l(:cache_expiration) %></label>
+    <%= text_field_tag 'settings[cache_seconds]', @settings['cache_seconds'], size: 10, disabled: true %> seconds
+  </p>
+  <p>
+    <label><%= l(:plantuml_binary) %></label>
+    <%= text_field_tag 'settings[plantuml_binary_default]', @settings['plantuml_binary_default'], size: 60 %>
+  </p>
+
+</fieldset>
