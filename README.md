@@ -37,6 +37,10 @@ This plugin will allow adding [PlantUML](http://plantuml.sourceforge.net/) diagr
 
 - you can choose between PNG or SVG images by setting the `plantuml` macro argument to either `png` or `svg`
 
+## Known issues
+
+- PlantUML diagrams are not rendered inside a PDF export, see https://github.com/dkd/plantuml/issues/1
+
 ## TODO
 
 - add image caching
