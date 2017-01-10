@@ -5,7 +5,7 @@ Redmine::Plugin.register :plantuml do
   version '0.3.0'
   url 'https://github.com/dkd/plantuml'
 
-  requires_redmine version: '2.6'..'3.1'
+  requires_redmine version: '2.6'..'3.3'
 
   settings(partial: 'settings/plantuml',
            default: { 'plantuml_binary' => {}, 'cache_seconds' => '0' })
