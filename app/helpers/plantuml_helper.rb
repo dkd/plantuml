@@ -24,7 +24,7 @@ module PlantumlHelper
     settings_binary = Setting.plugin_plantuml['plantuml_binary_default']
     if File.file?(plantuml_file(name, '.pu'))
       unless File.file?(plantuml_file(name, frmt[:ext]))
-        %x("#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}")
+        `"#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}"`
       end
     else
       File.open(plantuml_file(name, '.pu'), 'w') do |file|
@@ -32,9 +32,8 @@ module PlantumlHelper
         file.write text + "\n"
         file.write '@enduml'
       end
-      %x("#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}")
+      `"#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}"`
     end
     name
   end
-
 end

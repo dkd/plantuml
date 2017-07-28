@@ -1,8 +1,8 @@
-#PlantUML Redmine plugin
+# PlantUML Redmine plugin
 
 This plugin will allow adding [PlantUML](http://plantuml.sourceforge.net/) diagrams into Redmine.
 
-##Requirements
+## Requirements
 
 - Java
 - PlantUML binary

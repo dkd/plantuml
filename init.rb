@@ -2,7 +2,7 @@ Redmine::Plugin.register :plantuml do
   name 'PlantUML plugin for Redmine'
   author 'Michael Skrynski'
   description 'This is a plugin for Redmine which renders PlantUML diagrams.'
-  version '0.3.0'
+  version '0.4.0'
   url 'https://github.com/dkd/plantuml'
 
   requires_redmine version: '2.6'..'3.4'
