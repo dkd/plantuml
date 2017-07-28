@@ -5,7 +5,7 @@ Redmine::Plugin.register :plantuml do
   version '0.3.0'
   url 'https://github.com/dkd/plantuml'
 
-  requires_redmine version: '2.6'..'3.3'
+  requires_redmine version: '2.6'..'3.4'
 
   settings(partial: 'settings/plantuml',
            default: { 'plantuml_binary' => {}, 'cache_seconds' => '0' })
@@ -38,6 +38,5 @@ Rails.configuration.to_prepare do
 
   unless Redmine::WikiFormatting::Textile::Helper.included_modules.include? PlantumlHelperPatch
     Redmine::WikiFormatting::Textile::Helper.send(:include, PlantumlHelperPatch)
-    require_dependency 'plantuml/hooks/views_layouts_hook'
   end
 end

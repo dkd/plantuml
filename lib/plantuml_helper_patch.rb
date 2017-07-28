@@ -12,24 +12,17 @@ module PlantumlHelperPatch
 end
 
 module HelperMethodsWikiExtensions
+  # extend the editor Toolbar for adding a plantuml button
+  # overwrite this helper method to have full control about the load order
   def heads_for_wiki_formatter_with_plantuml
-    heads_for_wiki_formatter_without_plantuml
-    return if ie6_or_ie7?
-
-    unless @heads_for_wiki_plantuml_included
-      content_for :header_tags do
-        o = javascript_include_tag('plantuml.js', plugin: 'plantuml')
-        o << stylesheet_link_tag('plantuml.css', plugin: 'plantuml')
-        o.html_safe
-      end
-      @heads_for_wiki_plantuml_included = true
+    return if @heads_for_wiki_plantuml_included
+    content_for :header_tags do
+      javascript_include_tag('jstoolbar/jstoolbar-textile.min') +
+        javascript_include_tag("jstoolbar/lang/jstoolbar-#{current_language.to_s.downcase}") +
+        stylesheet_link_tag('jstoolbar') +
+        javascript_include_tag('plantuml.js', plugin: 'plantuml') +
+        stylesheet_link_tag('plantuml.css', plugin: 'plantuml')
     end
-  end
-
-  private
-
-  def ie6_or_ie7?
-    useragent = request.env['HTTP_USER_AGENT'].to_s
-    useragent.match(/IE[ ]+[67]./).nil?
+    @heads_for_wiki_plantuml_included = true
   end
 end
