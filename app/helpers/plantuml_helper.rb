@@ -29,11 +29,15 @@ module PlantumlHelper
     else
       File.open(plantuml_file(name, '.pu'), 'w') do |file|
         file.write "@startuml\n"
-        file.write text + "\n"
+        file.write sanitize_plantuml(text) + "\n"
         file.write '@enduml'
       end
       `"#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}"`
     end
     name
+  end
+
+  def self.sanitize_plantuml(text)
+    text.gsub!(/^!include.*$/, '')
   end
 end
