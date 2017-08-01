@@ -38,6 +38,6 @@ module PlantumlHelper
   end
 
   def self.sanitize_plantuml(text)
-    text.gsub!(/^!include.*$/, '')
+    text.gsub!(/!include.*$/, '')
   end
 end
