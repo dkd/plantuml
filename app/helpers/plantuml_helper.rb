@@ -40,5 +40,6 @@ module PlantumlHelper
   def self.sanitize_plantuml(text)
     return text if Setting.plugin_plantuml['allow_includes']
     text.gsub!(/!include.*$/, '')
+    text
   end
 end
