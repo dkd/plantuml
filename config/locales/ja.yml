@@ -1,0 +1,5 @@
+ja:
+  plugin_settings: 'プラグインの設定'
+  cache_expiration: 'キャッシュの有効期限'
+  plantuml_binary: 'PlantUMLのパス'
+  allow_includes: '!includeを許可する(注意!:セキュリティリスク上のリスクがあります)'
