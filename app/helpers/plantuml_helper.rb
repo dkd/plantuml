@@ -20,18 +20,16 @@ module PlantumlHelper
 
   def self.plantuml(text, args)
     frmt = check_format(args)
-    name = construct_cache_key(text)
+    name = construct_cache_key(sanitize_plantuml(text))
     settings_binary = Setting.plugin_plantuml['plantuml_binary_default']
-    if File.file?(plantuml_file(name, '.pu'))
-      unless File.file?(plantuml_file(name, frmt[:ext]))
-        `"#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}"`
-      end
-    else
+    unless File.file?(plantuml_file(name, '.pu'))
       File.open(plantuml_file(name, '.pu'), 'w') do |file|
         file.write "@startuml\n"
         file.write sanitize_plantuml(text) + "\n"
         file.write '@enduml'
       end
+    end
+    unless File.file?(plantuml_file(name, frmt[:ext]))
       `"#{settings_binary}" -charset UTF-8 -t"#{frmt[:type]}" "#{plantuml_file(name, '.pu')}"`
     end
     name
