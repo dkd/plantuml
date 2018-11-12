@@ -30,6 +30,29 @@ EOF
       image_tag "/plantuml/#{frmt[:type]}/#{image}#{frmt[:ext]}"
     end
   end
+  Redmine::WikiFormatting::Macros.register do
+    desc <<EOF
+      Render attached PlantUML file.
+
+      {{plantuml_attach(diagram.pu)}}
+      {{plantuml_attach(diagram.pu, format=png)}} -- with image format
+      ** Available formt options are "png" or "svg"
+EOF
+    macro :plantuml_attach do |obj, args|
+      raise 'No PlantUML binary set.' if Setting.plugin_plantuml['plantuml_binary_default'].blank?
+      args, options = extract_macro_options(args, :format)
+      filename = args.first
+      raise 'Filename required' unless filename.present?
+      frmt = PlantumlHelper.check_format(options[:format])
+      if obj && obj.respond_to?(:attachments) && attachment = Attachment.latest_attach(obj.attachments, filename)
+        image = PlantumlHelper.plantuml(File.read(attachment.diskfile), frmt[:type])
+        image_tag "/plantuml/#{frmt[:type]}/#{image}#{frmt[:ext]}"
+      else
+        raise "Attachment #{filename} not found"
+      end
+    end
+  end
+
 end
 
 Rails.configuration.to_prepare do
