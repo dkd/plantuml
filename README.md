@@ -21,7 +21,7 @@ This plugin will allow adding [PlantUML](http://plantuml.sourceforge.net/) diagr
 ## Usage
 
 - go to the [plugin settings page](http://localhost:3000/settings/plugin/plantuml) and add the *PlantUML binary* path `/usr/bin/plantuml`
-- PlantUML diagrams can be added as follow:
+- PlantUML diagrams can be added as follow (the same for textile and markdown):
 
 ```
 {{plantuml(png)
