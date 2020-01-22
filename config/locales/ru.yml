@@ -1,0 +1,5 @@
+ru:
+  plugin_settings: 'Настройки плагина'
+  cache_expiration: 'Срок действия кэша'
+  plantuml_binary: 'Бинарник PlantUML'
+  allow_includes: 'Разрешить !include (ВНИМАНИЕ! Не безопасно!)'
