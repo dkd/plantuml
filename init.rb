@@ -35,8 +35,11 @@ end
 Rails.configuration.to_prepare do
   # Guards against including the module multiple time (like in tests)
   # and registering multiple callbacks
+  unless Redmine::WikiFormatting::Textile::Helper.included_modules.include? PlantumlTextileHelperPatch
+    Redmine::WikiFormatting::Textile::Helper.send(:include, PlantumlTextileHelperPatch)
+  end
 
-  unless Redmine::WikiFormatting::Textile::Helper.included_modules.include? PlantumlHelperPatch
-    Redmine::WikiFormatting::Textile::Helper.send(:include, PlantumlHelperPatch)
+  unless Redmine::WikiFormatting::Markdown::Helper.included_modules.include? PlantumlMarkdownHelperPatch
+    Redmine::WikiFormatting::Markdown::Helper.send(:include, PlantumlMarkdownHelperPatch)
   end
 end
