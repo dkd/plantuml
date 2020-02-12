@@ -39,4 +39,7 @@ Rails.configuration.to_prepare do
   unless Redmine::WikiFormatting::Textile::Helper.included_modules.include? PlantumlHelperPatch
     Redmine::WikiFormatting::Textile::Helper.send(:include, PlantumlHelperPatch)
   end
+  unless Redmine::Export::PDF::ITCPDF.included_modules.include? PlantumlPdfPatch
+    Redmine::Export::PDF::ITCPDF.send(:include, PlantumlPdfPatch)
+  end
 end
