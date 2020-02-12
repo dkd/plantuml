@@ -14,9 +14,11 @@ module PlantumlPdfPatch
 
   module InstanceMethod
     def get_image_filename_with_plantUml(attrname)
-      return get_image_filename_without_plantUml(attrname) unless attrname =~ %r{^/plantuml/png/(\w+)\.png$}i
-
-      PlantumlHelper.plantuml_file(Regexp.last_match[1], '.png')
+      if attrname =~ %r{^/plantuml/png/(\w+)\.png$}i
+        PlantumlHelper.plantuml_file(Regexp.last_match[1], '.png')
+      else
+        get_image_filename_without_plantUml(attrname)
+      end
     end
   end
 end
