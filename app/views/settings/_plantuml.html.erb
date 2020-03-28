@@ -11,5 +11,9 @@
     <label><%= l(:plantuml_binary) %></label>
     <%= text_field_tag 'settings[plantuml_binary_default]', @settings['plantuml_binary_default'], size: 60 %>
   </p>
+  <p>
+    <label><%= l(:embed_svg) %></label>
+    <%= check_box_tag 'settings[embed_svg]', 1, @settings['embed_svg'] %>
+  </p>
 
 </fieldset>

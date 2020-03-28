@@ -8,7 +8,7 @@ Redmine::Plugin.register :plantuml do
   requires_redmine version: '2.6'..'4.0'
 
   settings(partial: 'settings/plantuml',
-           default: { 'plantuml_binary' => {}, 'cache_seconds' => '0', 'allow_includes' => false })
+           default: { 'plantuml_binary' => {}, 'cache_seconds' => '0', 'allow_includes' => false, 'embed_svg' => false })
 
   Redmine::WikiFormatting::Macros.register do
     desc <<EOF
@@ -27,7 +27,12 @@ EOF
       raise 'No or bad arguments.' if args.size != 1
       frmt = PlantumlHelper.check_format(args.first)
       image = PlantumlHelper.plantuml(text, args.first)
-      image_tag "/plantuml/#{frmt[:type]}/#{image}#{frmt[:ext]}"
+      if Setting.plugin_plantuml['embed_svg'] && frmt[:type] == 'svg'
+        _file = PlantumlHelper.plantuml_file(image, frmt[:ext])
+        File.read(_file).html_safe
+      else
+        image_tag "/plantuml/#{frmt[:type]}/#{image}#{frmt[:ext]}"
+      end
     end
   end
 end
