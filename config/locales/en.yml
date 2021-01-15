@@ -3,3 +3,4 @@ en:
   cache_expiration: 'Cache expiration time'
   plantuml_binary: 'PlantUML binary'
   allow_includes: 'Allow !include (ATTENTION! Security risk)'
+  embed_svg: 'Embed SVG images as inline <svg>'

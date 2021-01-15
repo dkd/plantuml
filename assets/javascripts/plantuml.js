@@ -11,7 +11,7 @@ if (typeof(jsToolBar) != 'undefined') {
         fn: {
             wiki: function () {
                 // this.singleTag('{{plantuml(png)\n', '\n}}');
-                this.encloseLineSelection('{{plantuml(png)\n', '\n}}')
+                this.encloseLineSelection('{{plantuml(svg)\n', '\n}}')
             }
         }
     }
