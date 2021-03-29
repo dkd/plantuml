@@ -24,9 +24,13 @@ module PlantumlHelper
     settings_binary = Setting.plugin_plantuml['plantuml_binary_default']
     unless File.file?(plantuml_file(name, '.pu'))
       File.open(plantuml_file(name, '.pu'), 'w') do |file|
-        file.write "@startuml\n"
-        file.write sanitize_plantuml(text) + "\n"
-        file.write '@enduml'
+        if text.match('@start').nil?
+          file.write "@startuml\n"
+          file.write sanitize_plantuml(text) + "\n"
+          file.write '@enduml'
+        else
+          file.write sanitize_plantuml(text)
+        end
       end
     end
     unless File.file?(plantuml_file(name, frmt[:ext]))
