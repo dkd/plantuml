@@ -17,7 +17,7 @@ module HelperMethodsWikiExtensions
     return if @heads_for_wiki_plantuml_included
     super
     content_for :header_tags do
-      javascript_include_tag('jstoolbar/jstoolbar-textile.min') +
+      javascript_include_tag('jstoolbar/textile') +
         javascript_include_tag("jstoolbar/lang/jstoolbar-#{current_language.to_s.downcase}") +
         stylesheet_link_tag('jstoolbar') +
         javascript_include_tag('plantuml.js', plugin: 'plantuml') +
