@@ -1,7 +1,7 @@
 Redmine::Plugin.register :plantuml do
   name 'PlantUML plugin for Redmine'
   description 'This is a plugin for Redmine which renders PlantUML diagrams.'
-  version '0.5.4'
+  version '0.5.5'
   url 'https://github.com/javister/plantuml'
 
   requires_redmine :version_or_higher => '2.6.0'
