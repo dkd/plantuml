@@ -1,11 +1,10 @@
 Redmine::Plugin.register :plantuml do
   name 'PlantUML plugin for Redmine'
-  author 'Michael Skrynski'
   description 'This is a plugin for Redmine which renders PlantUML diagrams.'
-  version '0.5.1'
-  url 'https://github.com/dkd/plantuml'
+  version '0.5.5'
+  url 'https://github.com/javister/plantuml'
 
-  requires_redmine version: '2.6'..'4.1'
+  requires_redmine :version_or_higher => '2.6.0'
 
   settings(partial: 'settings/plantuml',
            default: { 'plantuml_binary' => {}, 'cache_seconds' => '0', 'allow_includes' => false })
@@ -38,5 +37,8 @@ Rails.configuration.to_prepare do
 
   unless Redmine::WikiFormatting::Textile::Helper.included_modules.include? PlantumlHelperPatch
     Redmine::WikiFormatting::Textile::Helper.send(:include, PlantumlHelperPatch)
+  end
+  unless Redmine::Export::PDF::ITCPDF.included_modules.include? PlantumlPdfPatch
+    Redmine::Export::PDF::ITCPDF.send(:include, PlantumlPdfPatch)
   end
 end
